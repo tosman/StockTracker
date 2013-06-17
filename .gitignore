@@ -1,3 +1,6 @@
+# Whats this gitignore temp file?
+.gitignore~
+
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
 [Bb]in/
 [Oo]bj/
@@ -12,6 +15,9 @@ TestResults
 *.suo
 *.user
 *.sln.docstates
+
+# MongoDB files/data folder
+data/*
 
 # Build results
 [Dd]ebug/

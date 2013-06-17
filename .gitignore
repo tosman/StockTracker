@@ -16,9 +16,6 @@ TestResults
 *.user
 *.sln.docstates
 
-# MongoDB files/data folder
-data/*
-
 # Build results
 [Dd]ebug/
 [Rr]elease/

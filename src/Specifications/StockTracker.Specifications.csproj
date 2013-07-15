@@ -64,9 +64,13 @@
   <ItemGroup>
     <Compile Include="NSubstituteAutoMockerBuilder.cs" />
     <Compile Include="Ordered.cs" />
+    <Compile Include="When_getting_all.cs" />
+    <Compile Include="When_getting_by_symbol.cs" />
     <Compile Include="When_saving_a_new_stock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="When_updating_a_stock.cs" />
     <Compile Include="With.cs" />
+    <Compile Include="WithDb.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,4 +1,5 @@
 ﻿using Machine.Specifications;
+using MongoDB.Bson;
 using StockTracker.Business.Models;
 using StockTracker.Business.Persistence;
 
@@ -9,7 +10,7 @@ namespace StockTracker.Specifications
     {
         Because of = () => _stock = Subject.Save(new Stock("GOOG"));
 
-        It should_save_the_stock = () => _stock.Id.ShouldNotBeNull();
+        It should_save_the_stock = () => _stock.Id.ShouldNotEqual(ObjectId.Empty);
 
         private static Stock _stock;
     }

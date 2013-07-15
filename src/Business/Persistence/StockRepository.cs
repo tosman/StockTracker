@@ -15,6 +15,8 @@ namespace StockTracker.Business.Persistence
 
     public class StockRepository : IStockRepository
     {
+        public const string StockCollection = "Stocks";
+
         private readonly MongoDatabase _db;
 
         public StockRepository(MongoDatabase db)
@@ -24,12 +26,12 @@ namespace StockTracker.Business.Persistence
 
         public IEnumerable<Stock> GetAll()
         {
-            return _db.GetCollection<Stock>("Stocks").FindAll();
+            return _db.GetCollection<Stock>(StockCollection).FindAll();
         }
 
         public Stock Get(string symbol)
         {
-            var collection = _db.GetCollection<Stock>("Stocks");
+            var collection = _db.GetCollection<Stock>(StockCollection);
 
             return collection.FindOne(Query<Stock>.EQ(x => x.Symbol, symbol));
         }
@@ -41,14 +43,14 @@ namespace StockTracker.Business.Persistence
 
         private Stock Insert(Stock stock)
         {
-            var collection = _db.GetCollection<Stock>("Stocks");
+            var collection = _db.GetCollection<Stock>(StockCollection);
             collection.Insert(stock);
             return stock;
         }
 
         private Stock Update(Stock stock)
         {
-            var collection = _db.GetCollection<Stock>("Stocks");
+            var collection = _db.GetCollection<Stock>(StockCollection);
             collection.Save(stock);
             return stock;
         }

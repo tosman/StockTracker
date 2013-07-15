@@ -1,43 +1,54 @@
-﻿using MongoDB.Bson;
+﻿using System.Collections.Generic;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using StockTracker.Business.Models;
 
 namespace StockTracker.Business.Persistence
 {
-    public class StockRepository
+    public interface IStockRepository
     {
-        private readonly IDatabase _db;
+        IEnumerable<Stock> GetAll();
+        Stock Get(string symbol);
+        Stock Save(Stock stock);
+    }
 
-        public StockRepository(IDatabase db)
+    public class StockRepository : IStockRepository
+    {
+        private readonly MongoDatabase _db;
+
+        public StockRepository(MongoDatabase db)
         {
             _db = db;
         }
 
-        public Stock Save(Stock stock)
+        public IEnumerable<Stock> GetAll()
         {
-            if (stock.Id == ObjectId.Empty)
-                return Insert(stock);
-
-            return Update(stock);
+            return _db.GetCollection<Stock>("Stocks").FindAll();
         }
 
         public Stock Get(string symbol)
         {
-            var collection = _db.GetStocksCollection();
+            var collection = _db.GetCollection<Stock>("Stocks");
 
             return collection.FindOne(Query<Stock>.EQ(x => x.Symbol, symbol));
         }
 
+        public Stock Save(Stock stock)
+        {
+            return stock.Id == ObjectId.Empty ? Insert(stock) : Update(stock);
+        }
+
         private Stock Insert(Stock stock)
         {
-            var collection = _db.GetStocksCollection();
+            var collection = _db.GetCollection<Stock>("Stocks");
             collection.Insert(stock);
             return stock;
         }
 
         private Stock Update(Stock stock)
         {
-            var collection = _db.GetStocksCollection();
+            var collection = _db.GetCollection<Stock>("Stocks");
             collection.Save(stock);
             return stock;
         }

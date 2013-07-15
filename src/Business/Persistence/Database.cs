@@ -1,30 +1,22 @@
-﻿using System.Configuration;
-using MongoDB.Driver;
-using StockTracker.Business.Models;
+﻿using MongoDB.Driver;
 
 namespace StockTracker.Business.Persistence
 {
-    public interface IDatabase
+    public static class Database
     {
-        void Start(string database);
-        MongoCollection<Stock> GetStocksCollection();
-    }
+        public const string DbName = "Contacts";
 
-    public class Database : IDatabase
-    {
-        private MongoDatabase _db;
-
-        public void Start(string database)
+        public static MongoDatabase GetDatabase(string dbName)
         {
-            //var client = new MongoClient(ConfigurationManager.ConnectionStrings["main"].ConnectionString);
-            var client = new MongoClient("mongodb://localhost");
+            const string connectionString = "mongodb://localhost";
+            var client = new MongoClient(connectionString);
             var server = client.GetServer();
-            _db = server.GetDatabase(database);
+            return server.GetDatabase(dbName);
         }
 
-        public MongoCollection<Stock> GetStocksCollection()
+        public static MongoDatabase GetDatabase()
         {
-            return _db.GetCollection<Stock>("Stocks");
+            return GetDatabase(DbName);
         }
     }
 }

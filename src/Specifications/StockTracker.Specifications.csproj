@@ -55,6 +55,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\When_getting_all.cs" />
+    <Compile Include="Controllers\When_saving_a_stock.cs" />
+    <Compile Include="Controllers\When_updating_a_stock.cs" />
     <Compile Include="NSubstituteAutoMockerBuilder.cs" />
     <Compile Include="Ordered.cs" />
     <Compile Include="Persistence\When_getting_all.cs" />
@@ -79,6 +83,10 @@
     <ProjectReference Include="..\Business\StockTracker.Business.csproj">
       <Project>{7d6d5e54-e8e5-4410-a3ab-be2cca39eb81}</Project>
       <Name>StockTracker.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server\StockTracker.Server.csproj">
+      <Project>{ece0a432-f6aa-4d1c-942c-d0f5b6cc44e9}</Project>
+      <Name>StockTracker.Server</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

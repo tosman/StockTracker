@@ -18,7 +18,7 @@ namespace StockTracker.Server.Controllers
         [HttpGet]
         public IEnumerable<Stock> List()
         {
-            return new List<Stock> {new Stock("GOOG")};
+            return _repository.GetAll();
         }
 
         // GET api/stock/5
@@ -32,12 +32,15 @@ namespace StockTracker.Server.Controllers
         [HttpPost]
         public void Create([FromBody]Stock value)
         {
+            _repository.Save(value);
         }
 
         // PUT api/stock/5
         [HttpPut]
         public void Update(int id, [FromBody]Stock value)
         {
+            //TODO: Don't know how this works
+            _repository.Save(value);
         }
 
         // DELETE api/stock/5

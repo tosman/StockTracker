@@ -4,7 +4,7 @@ namespace StockTracker.Business.Persistence
 {
     public static class Database
     {
-        public const string DbName = "Contacts";
+        public const string DbName = "Stocks";
 
         public static MongoDatabase GetDatabase(string dbName)
         {

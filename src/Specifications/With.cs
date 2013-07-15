@@ -1,7 +1,6 @@
 ﻿using System;
 using Machine.Specifications;
 using StructureMap.AutoMocking;
-using StructureMap.AutoMocking.NSubstitute;
 
 namespace StockTracker.Specifications
 {
@@ -14,8 +13,8 @@ namespace StockTracker.Specifications
             Context = new OrderedContext();
         };
 
-        protected static void Record<TDependency>() 
-            where TDependency : class 
+        protected static void Record<TDependency>()
+            where TDependency : class
         {
             Context.Record(For<TDependency>());
         }

@@ -5,7 +5,7 @@ using StockTracker.Business.Persistence;
 namespace StockTracker.Specifications
 {
     [Subject(typeof(StockRepository))]
-    public class When_saving_a_new_stock : With<StockRepository>
+    public class When_saving_a_new_stock : WithDb<StockRepository>
     {
         Because of = () => _stock = Subject.Save(new Stock("GOOG"));
 
